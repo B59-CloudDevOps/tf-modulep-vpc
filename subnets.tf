@@ -11,7 +11,7 @@ resource "aws_subnet" "app" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.app_subnet_cidr_block[count.index]
 
-  tags = local.web_subnet_tags
+  tags = local.app_subnet_tags
 }
 
 resource "aws_subnet" "db" {
@@ -19,5 +19,5 @@ resource "aws_subnet" "db" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.db_subnet_cidr_block[count.index]
 
-  tags = local.web_subnet_tags
+  tags = local.db_subnet_tags
 }
