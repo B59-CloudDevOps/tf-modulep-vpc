@@ -4,4 +4,4 @@ variable "web_subnet_cidr_block" {}
 variable "app_subnet_cidr_block" {}
 variable "db_subnet_cidr_block" {}
 variable "tags" {}
-variable "azs" {}
+variable "availabilitiy_zone" {}
