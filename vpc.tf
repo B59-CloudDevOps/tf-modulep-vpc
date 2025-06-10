@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
 
   tags = merge(local.tags,
     {
-      Name = "${local.name_tag_prefix}-vpc"
+      Name = "roboshop-${local.name_tag_prefix}-vpc"
     }
   )
 }
