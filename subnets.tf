@@ -3,7 +3,7 @@ resource "aws_subnet" "web" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.web_subnet_cidr_block[count.index]
   availability_zone = var.az[count.index]
-
+  # The tags for the web subnet
   tags = local.web_subnet_tags
 }
 
