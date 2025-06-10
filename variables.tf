@@ -5,3 +5,6 @@ variable "app_subnet_cidr_block" {}
 variable "db_subnet_cidr_block" {}
 variable "az" {}
 variable "tags" {}
+variable "default_vpc_id" {}
+variable "default_vpc_rt" {}
+variable "default_vpc_cidr_block" {}
