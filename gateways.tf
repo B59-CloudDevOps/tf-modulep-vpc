@@ -11,7 +11,7 @@ resource "aws_internet_gateway" "main" {
 resource "aws_eip" "main" {
   domain = "vpc"
   tags = {
-    Name = "roboshop-${local.nat_tags}-eip"
+    Name = "roboshop-${local.name_tag_prefix}-nat-eip"
   }
 }
 
@@ -23,6 +23,6 @@ resource "aws_nat_gateway" "main" {
   subnet_id     = aws_subnet.web.*.id[0]
 
   tags = {
-    Name = "roboshop-${local.nat_tags}"
+    Name = "roboshop-${local.name_tag_prefix}-nat-gw"
   }
 }
