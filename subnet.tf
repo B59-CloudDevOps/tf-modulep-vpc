@@ -1,9 +1,10 @@
 resource "aws_subnet" "web" {
-  count                = length(var.web_subnet_cidr_block)
-  vpc_id               = aws_vpc.main.id
-  cidr_block           = var.web_subnet_cidr_block[count.index]
-  availability_zone_id = var.az[count.index]
-  # The tags for the web subnet
+  count                   = length(var.web_subnet_cidr_block)
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.web_subnet_cidr_block[count.index]
+  availability_zone_id    = var.az[count.index]
+  map_public_ip_on_launch = true
+  # Ensure that the web subnet is public by enabling public IPs on launch
   tags = local.web_subnet_tags
 }
 
