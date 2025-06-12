@@ -19,7 +19,7 @@ resource "aws_route_table" "web" {
   }
 
   tags = {
-    Name = "${local.web_subnet_tags}-route-table"
+    Name = "${local.name_tag_prefix}-web-route-table"
   }
 }
 
@@ -32,7 +32,7 @@ resource "aws_route_table" "app" {
   # }
 
   tags = {
-    Name = "${local.app_subnet_tags}-route-table"
+    Name = "${local.name_tag_prefix}-app-route-table"
   }
 }
 
@@ -41,6 +41,6 @@ resource "aws_route_table" "db" {
 
 
   tags = {
-    Name = "${local.db_subnet_tags}-route-table"
+    Name = "${local.name_tag_prefix}-db-route-table"
   }
 }
