@@ -9,3 +9,16 @@ resource "aws_route" "default_vpc" {
 #   destination_cidr_block    = var.vpc_cidr_block
 #   vpc_peering_connection_id = aws_vpc_peering_connection.main.id
 # }
+
+resource "aws_route_table" "web" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.main.id
+  }
+
+  tags = {
+    Name = "${local.web_subnet_tags}-route-table"
+  }
+}
