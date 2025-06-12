@@ -18,6 +18,11 @@ resource "aws_route_table" "web" {
     gateway_id = aws_internet_gateway.main.id
   }
 
+  route {
+    cidr_block                = var.default_vpc_cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
+  }
+
   tags = {
     Name = "${local.name_tag_prefix}-web-route-table"
   }
@@ -32,10 +37,10 @@ resource "aws_route_table_association" "web" {
 resource "aws_route_table" "app" {
   vpc_id = aws_vpc.main.id
 
-  # route {
-  #   cidr_block = "0.0.0.0/0"
-  #   gateway_id = aws_internet_gateway.main.id
-  # }
+  route {
+    cidr_block                = var.default_vpc_cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
+  }
 
   tags = {
     Name = "${local.name_tag_prefix}-app-route-table"
@@ -51,7 +56,10 @@ resource "aws_route_table_association" "app" {
 resource "aws_route_table" "db" {
   vpc_id = aws_vpc.main.id
 
-
+  route {
+    cidr_block                = var.default_vpc_cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
+  }
   tags = {
     Name = "${local.name_tag_prefix}-db-route-table"
   }
