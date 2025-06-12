@@ -24,7 +24,7 @@ resource "aws_route_table" "web" {
 }
 
 resource "aws_route_table_association" "web" {
-  count          = length(var.aws_subnet.web.*.id)
+  count          = length(aws_subnet.web.*.id)
   subnet_id      = aws_subnet.web.*.id[count.index]
   route_table_id = aws_route_table.web.id
 }
@@ -43,7 +43,7 @@ resource "aws_route_table" "app" {
 }
 
 resource "aws_route_table_association" "app" {
-  count          = length(var.aws_subnet.app.*.id)
+  count          = length(aws_subnet.app.*.id)
   subnet_id      = aws_subnet.app.*.id[count.index]
   route_table_id = aws_route_table.app.id
 }
@@ -58,7 +58,7 @@ resource "aws_route_table" "db" {
 }
 
 resource "aws_route_table_association" "db" {
-  count          = length(var.aws_subnet.db.*.id)
+  count          = length(aws_subnet.db.*.id)
   subnet_id      = aws_subnet.db.*.id[count.index]
   route_table_id = aws_route_table.db.id
 }
