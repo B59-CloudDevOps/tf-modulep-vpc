@@ -23,6 +23,12 @@ resource "aws_route_table" "web" {
   }
 }
 
+resource "aws_route_table_association" "web" {
+  count          = length(var.aws_subnet.web.*.id)
+  subnet_id      = aws_subnet.web.*.id[count.index]
+  route_table_id = aws_route_table.web.id
+}
+
 resource "aws_route_table" "app" {
   vpc_id = aws_vpc.main.id
 
@@ -36,6 +42,12 @@ resource "aws_route_table" "app" {
   }
 }
 
+resource "aws_route_table_association" "app" {
+  count          = length(var.aws_subnet.app.*.id)
+  subnet_id      = aws_subnet.app.*.id[count.index]
+  route_table_id = aws_route_table.app.id
+}
+
 resource "aws_route_table" "db" {
   vpc_id = aws_vpc.main.id
 
@@ -43,4 +55,10 @@ resource "aws_route_table" "db" {
   tags = {
     Name = "${local.name_tag_prefix}-db-route-table"
   }
+}
+
+resource "aws_route_table_association" "db" {
+  count          = length(var.aws_subnet.db.*.id)
+  subnet_id      = aws_subnet.db.*.id[count.index]
+  route_table_id = aws_route_table.db.id
 }
